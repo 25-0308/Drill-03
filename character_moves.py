@@ -13,6 +13,8 @@ character_y = 90
 running = True
 
 turn = True
+degree=-90
+r = math.sqrt(150**2+150**2)
 
 while running:
     clear_canvas()
@@ -32,6 +34,18 @@ while running:
         elif character_y >= 90 and character_x <= 20:
             character_x=20
             character_y -= 10
+
+        if(character_x==400 and character_y==90):
+            turn=False
+    elif not turn:
+        character_x=400+r*math.cos(math.radians(degree))*-1
+        character_y=300+r*math.sin(math.radians(degree))
+        degree+=3
+        if degree==270:
+            character_x=400
+            character_y=90
+            degree=-90
+            turn=True
 
     update_canvas()
     delay(0.01)
